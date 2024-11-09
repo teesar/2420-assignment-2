@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Ensure script is run with sudo or as root
+if ["$(id -u)" != 0 ]; then
+echo "This script must be run with sudo or as root. Please try again."
+exit 1
+fi
+
+# Sync repository database, update system packages
+pacman -Syu --noconfirm
+
+# Install each package listed in packages file
+for package in $(cat packages); do
+  pacman -S --needed "$package" --noconfirm
+done
