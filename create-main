@@ -1,10 +1,12 @@
 #!/bin/bash
 
+# Ensure script is run with sudo or as root.
 if [ $(id -u) -ne 0 ]; then
   echo "This script must be run with sudo or as root."
   exit 1
 fi
 
+# Use getopts to allow user to specify which scripts to run.
 OPTSTRING=":ab"
 while getopts ${OPTSTRING} opt; do
   case ${opt} in
@@ -21,4 +23,13 @@ while getopts ${OPTSTRING} opt; do
   esac
 done
 
+# Run create-install script if user has selected the option to do so.
+if [[ $INSTALL = true ]]; then
+  ./create-install || { echo "Error starting installation script. Please ensure the 'create-install' file exists in the same directory as this file.";exit 1; }
+fi
+
+# Run create-links script if user has selected the option to do so.
+if [[ $LINKS = true ]]; then
+  ./create-links || { echo "Error starting git clone and link creation script. Please ensure the 'create-links' file exists in the same directory as this file.";exit 1; }
+fi
 
