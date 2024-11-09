@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ $(id -u) -ne 0 ]; then
+  echo "This script must be run with sudo or as root."
+  exit 1
+fi
+
+OPTSTRING=":ab"
+while getopts ${OPTSTRING} opt; do
+  case ${opt} in
+    a)
+      INSTALL=true
+      ;;
+    b)
+      LINKS=true
+      ;;
+    ?)
+      echo "Invalid option. Use -a flag to install packages. Use -b flag to initiate git clone and link creation."
+      exit 1
+      ;;
+  esac
+done
+
+
