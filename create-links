@@ -9,19 +9,23 @@ fi
 # Assign variable to home directory of user that used sudo
 YOUR_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
 
-# Clone git repository and create symbolic links
+#eval "$(ssh-agent -s)"
+
+# Clone git repository and create symbolic links (ssh options commented out)
 if [ -z "$YOUR_HOME" ]; then
-  git clone git@gitlab.com:cit2420/2420-as2-starting-files.git ~/.dotfiles || { echo "Error cloning git. Ensure ssh keys are properly configured. Refer to ssh-add and ssh-agent commands.";exit 1; }
+  #git clone git@gitlab.com:cit2420/2420-as2-starting-files.git ~/.dotfiles || { echo "Error cloning git. Ensure ssh keys are properly configured. Refer to ssh-add and ssh-agent commands.";exit 1; }
+  git clone https://gitlab.com/cit2420/2420-as2-starting-files.git ~/.dotfiles || { echo "Error cloning git. Ensure url is correct and repository is accessible.";exit 1; }
   ln -sf ~/.dotfiles/bin ~/bin
   ln -sf ~/.dotfiles/config ~/.config
   ln -sf ~/.dotfiles/home/bashrc ~/.bashrc
 else
- git clone git@gitlab.com:cit2420/2420-as2-starting-files.git $YOUR_HOME/.dotfiles || { echo "Error cloning git. Ensure ssh keys are properly configured. Refer to ssh-add and ssh-agent commands.";exit 1; }
- ln -sf $YOUR_HOME/.dotfiles/bin $YOUR_HOME/bin
- ln -sf $YOUR_HOME/.dotfiles/config $YOUR_HOME/.config
- ln -sf $YOUR_HOME/.dotfiles/home/bashrc $YOUR_HOME/.bashrc
+ # ssh-add $YOUR_HOME/.ssh/gitlab
+  #git clone git@gitlab.com:cit2420/2420-as2-starting-files.git $YOUR_HOME/.dotfilestt || { echo "Error cloning git. Ensure ssh keys are properly configured. Refer to ssh-add and ssh-agent commands.";exit 1; }
+  git clone https://gitlab.com/cit2420/2420-as2-starting-files.git $YOUR_HOME/.dotfilestt
+  ln -sf $YOUR_HOME/.dotfiles/bin $YOUR_HOME/bintt
+  ln -sf $YOUR_HOME/.dotfiles/config $YOUR_HOME/.configtt
+  ln -sf $YOUR_HOME/.dotfiles/home/bashrc $YOUR_HOME/.bashrctt
 fi
-
 
 
 
