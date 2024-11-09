@@ -2,11 +2,11 @@
 
 # Creating New User
 
-To create a new user you'll be using the create-user file. **This file must be run with sudo or as root.** 
-There are several flags you may use to customize the process.
+The create-user script is used to create a new user. **This file must be run with sudo or as root.** 
+There are several flags you may use to customize the process. Each expects an argument if used.
 #### Command Flags
     -a <username>    **REQUIRED**
-    -b <password>
+    -b <password> 
     -c <shell>     *Will default to /bin/bash if not set
     -d <groups>    *Must be comma separated values with no spaces
 
@@ -16,10 +16,24 @@ There are several flags you may use to customize the process.
 sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgroup2
 ```
 
-#
+# Installing Packages | Cloning Git & Creating Links 
+
+The create-main script is used to activate two additional scripts. The first clones a git repository onto your system and create symbolic links. The second installs a list of packages. **This file must be run with sudo or as root.** 
+
+There are several flags you may use to customize the process. No arguments are necessary.
+#### Command Flags
+    -a          *Initiates package installation
+    -b          *Initiates git clone and symbolic link creation
+
+**Example:** To initiate git clone/link creation and package installation, you may use both flags at the same time.
+```
+sudo ./create-main -ab
+```
 
 
-# create-install
+# Coding Breakdown
+
+## create-install
 * 
 ![](./Assets/install-1.png)
 1. Ensure script is run with sudo or by root. Check if id of user running script is not equal to 0. If so, this indicates the script was not run with sudo or by the root user, so we return an error message and exit the script.
@@ -30,7 +44,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 ![](./Assets/install-3.png)
 3. Iterate through packages file and install each package name listed. Using --needed so that it only installs if it isn't already installed. No user confirmation required.
 
-# create-links
+## create-links
 ![](./Assets/install-1.png)
 1. Ensure script is run with sudo or by root. Check if id of user running script is not equal to 0. If so, this indicates the script was not run with sudo or by the root user, so we return an error message and exit the script.
 
@@ -44,7 +58,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 6. We clone the git repository into desired location, if the command fails we give the user an error message asking them to check specific git issues.
 7. We force create the desired symbolic links, overwriting any current files of the same name. 
 
-# create-main
+## create-main
 ![](./Assets/main-1.png)
 1. Ensure script is run with sudo or by root. Check if id of user running script is not equal to 0. If so, this indicates the script was not run with sudo or by the root user, so we return an error message and exit the script.
 
@@ -58,7 +72,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 ![](./Assets/main4.png)
 4. If links variable has been set to true we run create-links script. If this command fials we return an error message asking user to ensure the required script exists in the necessary directory and then exits the script.
 
-# create-user
+## create-user
 ![](./Assets/install-1.png)
 1. Ensure script is run with sudo or by root. Check if id of user running script is not equal to 0. If so, this indicates the script was not run with sudo or by the root user, so we return an error message and exit the script.
 
