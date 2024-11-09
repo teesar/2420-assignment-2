@@ -29,6 +29,6 @@ else
   ln -sf $YOUR_HOME/.dotfiles/home/bashrc $YOUR_HOME/.bashrc
 fi
 
-
+echo "Congratulations! Git cloned and links created!
 
 

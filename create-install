@@ -19,3 +19,5 @@ pacman -Syu --noconfirm
 for package in $(cat packages); do
   pacman -S --needed "$package" --noconfirm
 done
+
+echo "Congratulations! Installation complete!"
