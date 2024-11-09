@@ -43,6 +43,23 @@ if [ $NAME == $USER_NAME ]; then
 fi
 done
 
+# Check last used uid to find an available uid for the new user.
+LAST_UID=$(cut -d: -f3 /etc/passwd | tail -n 1)
+if [ $LAST_UID -ge 1000 ]; then
+  NEW_UID=$((LAST_UID + 1))
+else
+  NEW_UID=1000
+fi
+
+# Check last used gid to find an available gid for the new user's primary group.
+LAST_GID=$(cut -d: -f3 /etc/group | tail -n 1)
+if [ $LAST_GID -ge 1000 ]; then
+  NEW_GID=$((LAST_GID + 1))
+else
+  NEW_GID=1000
+fi
+
+
 
 
 
