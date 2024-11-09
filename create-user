@@ -8,7 +8,7 @@ fi
 
 # Getopts to set username, password, shell, group variable for user creation.
 OPTSTRING=":a:b:c:d:"
-whlie getopts ${OPTSTRING} opt; do
+while getopts ${OPTSTRING} opt; do
   case ${opt} in
     a)
       USER_NAME=${OPTARG}
