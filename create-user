@@ -97,7 +97,7 @@ fi
 # Assign ownership of user's home directory to the user.
 chown "$USER_NAME:$USER_NAME" /home/$USER_NAME || echo "Error assigning ownership of home folder to user. Please check file permissions."
 
-echo "Congratulations! New user $USER_NAME created!
+echo "Congratulations! New user $USER_NAME created!"
 
 
 
