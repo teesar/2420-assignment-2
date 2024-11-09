@@ -38,11 +38,14 @@ sudo ./create-main -ab
 ![](./Assets/install-1.png)
 1. Ensure script is run with sudo or by root. Check if id of user running script is not equal to 0. If so, this indicates the script was not run with sudo or by the root user, so we return an error message and exit the script.
 
+![](./Assets/install-4.png)
+2. Ensure packages file exists (-f flag for being a regular file) or returns error message and exits script.
+
 ![](./Assets/install-2.png)
-2. Sync, refresh, and update current packages. Using --noconfirm so that user does not need to enter input to confirm installation.
+3. Sync, refresh, and update current packages. Using --noconfirm so that user does not need to enter input to confirm installation.
 
 ![](./Assets/install-3.png)
-3. Iterate through packages file and install each package name listed. Using --needed so that it only installs if it isn't already installed. No user confirmation required.
+4. Iterate through packages file and install each package name listed. Using --needed so that it only installs if it isn't already installed. No user confirmation required.
 
 ## Script: create-links
 
