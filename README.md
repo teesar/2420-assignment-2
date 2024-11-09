@@ -1,7 +1,22 @@
 # 2420-assignment-2
 
+# Creating New User
 
+To create a new user you'll be using the create-user file. **This file must be run with sudo or as root.** 
+There are several flags you may use to customize the process.
+#### Command Flags
+    -a <username>    **REQUIRED**
+    -b <password>
+    -c <shell>     *Will default to /bin/bash if not set
+    -d <groups>    *Must be comma separated values with no spaces
 
+**Example:** Creating a user with the username "testuser", password "testpassword", shell "/bin/zsh", and added to the groups "testgroup1" and "testgroup2".
+
+```
+sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgroup2
+```
+
+#
 
 
 # create-install
