@@ -6,6 +6,12 @@ echo "This script must be run with sudo or as root. Please try again."
 exit 1
 fi
 
+# Ensure packages file exists
+if [ ! -f packages ]; then
+  echo "Packages file not found, please ensure it exists in the same folder as this script"
+  exit 1
+fi
+
 # Sync repository database, update system packages
 pacman -Syu --noconfirm
 
