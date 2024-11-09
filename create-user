@@ -33,6 +33,11 @@ while getopts ${OPTSTRING} opt; do
   esac
 done
 
+if [ -z $USER_NAME ]; then
+  echo "You must specify a username for user creation. Please try again."
+  exit 1
+fi
+
 # Assign all current usernames to variable.
 USER_LIST=$(cut -d: -f1 /etc/passwd)
 
