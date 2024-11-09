@@ -61,13 +61,19 @@
 ![](./Assets/user-4.png)
 5. we iterate over the existing users to check if the desired username has already been taken. If it has, we return an error and exit the script. If the username is available, we continue.
 
-
-
 ![](./Assets/user-5.png)
 6. We assign the last user id and group id on the system to variables.
 7. We check to see if each are greater than or equal to 1000, if they are then we can simply increment by 1 to set a new user id and group id that have not yet been used. If they are not greater than or equal to 1000, we can set this user to user id 1000 and group id 1000.
+
 ![](./Assets/user-6.png)
+8. We append the /etc/group file with what will be the primary group for the new user. Using the username for the group name, setting the group id, and adding the user to the group. If the command fails we return an error message to the user.
+
 ![](./Assets/user-7.png)
+9. We append the /etc/passwd file to create the new user. Setting the username, user id, primary group id, shell (custom if specified, otherwise defaulting to bin/bash). If the command fails we return an error message to the user.
+
 ![](./Assets/user-8.png)
+10. We check to see if the script has been given an argument for groups to add the user to. (-n flag specifies the variable is not empty)
+11. If so, we create a variable holding all existing group names. We pipe this forward and use tr to replace commas with new lines, separating the list of groups into individual groups. We pipe this to the while read loop which can iterate over each line (each group) and assign to variable GROUPY.
+12. We check the group list with grep for exact matches (-q flag to suppress output). If we find a match we use sed to add a comma (-i flag to edit in place)
 ![](./Assets/user-9.png)
 ![](./Assets/user-10.png)
