@@ -76,7 +76,12 @@ if [ -n "$USER_GROUPS" ]; then
   GROUP_LIST=$(cut -d: -f1 /etc/group)
   echo "$USER_GROUPS" | tr ',' '\n' | while read -r GROUPY; do
     if echo "$GROUP_LIST" | grep -q "^$GROUPY$"; then
-      sed -i "/^${GROUPY}:/ s/$/,$USER_NAME/" /etc/group
+      GROUPIES=$(grep "^${GROUPY}:" /etc/group | cut -d: -f4)
+      if [ -n "$GROUPIES" ]; then
+        sed -i "/^${GROUPY}:/ s/$/,$USER_NAME/" /etc/group
+      else
+        sed -i "/^${GROUPY}:/ s/$/$USER_NAME/" /etc/group
+      fi
     fi
   done
 fi
