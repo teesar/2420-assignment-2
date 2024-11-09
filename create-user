@@ -72,11 +72,16 @@ echo "$USER_NAME:x:$NEW_GID:$USER_NAME" >> /etc/group || echo "Error adding user
 echo "$USER_NAME:x:$NEW_UID:$NEW_GID::/home/$USER_NAME:${USER_SHELL:-/bin/bash}" >> /etc/passwd || echo "Error adding new user to /etc/passwd. Please check file permissions."
 
 # Add user to groups specified through getopts.
-if [ -n $USER_GROUPS ]; then
+if [ -n "$USER_GROUPS" ]; then
   GROUP_LIST=$(cut -d: -f1 /etc/group)
   echo "$USER_GROUPS" | tr ',' '\n' | while read -r GROUPY; do
     if echo "$GROUP_LIST" | grep -q "^$GROUPY$"; then
-      sed -i "/^${GROUP}:/ s/$/,$USER_NAME/" /etc/group
+      GROUPIES=$(grep "^${GROUPY}:" /etc/group | cut -d: -f4)
+      if [ -n "$GROUPIES" ]; then
+        sed -i "/^${GROUPY}:/ s/$/,$USER_NAME/" /etc/group
+      else
+        sed -i "/^${GROUPY}:/ s/$/$USER_NAME/" /etc/group
+      fi
     fi
   done
 fi
