@@ -1,2 +1,22 @@
 #!/bin/bash
 
+# Ensure script run with sudo or as root
+if [$(id -u) -ne 0 ]; then
+  echo "This script must be run as sudo or as root."
+  exit 1
+fi
+
+# Assign variable to home directory of user that used sudo
+YOUR_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
+
+if [ -z "$YOUR_HOME" ]; then
+  git clone git@gitlab.com:cit2420/2420-as2-starting-files.git ~/.dotfiles || { echo "Error cloning git. Ensure ssh keys are properly configured. Refer to ssh-add and ssh-agent commands.";exit 1; }
+  ln -sf ~/.dotfiles/bin ~/bin
+  ln -sf ~/.dotfiles/config ~/.config
+  ln -sf ~/.dotfiles/home/bashrc ~/.bashrc
+else
+
+
+
+
+
