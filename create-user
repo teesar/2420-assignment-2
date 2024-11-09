@@ -91,7 +91,7 @@ cp -R /etc/skel/. /home/$USER_NAME || echo "Error copying /etc/skel contents to 
 
 # Set user's password as specified through getopts.
 if [ -n "$USER_PASSWORD" ]; then
-  echo "$USER_NAME:$USER_PASSWORD" | chpasswd || echo "Error setting password. Gremlins in the machine."
+  echo "$USER_NAME:$USER_PASSWORD" | chpasswd || echo "Error setting password. Please check file permissions."
 fi
 
 # Assign ownership of user's home directory to the user.
