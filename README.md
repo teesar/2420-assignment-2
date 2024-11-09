@@ -32,10 +32,10 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 ```
 
 
-# Coding Breakdown
+# Coding Breakdown - Project 1
 
 ## Script: create-install 
-* 
+
 ![](./Assets/install-1.png)
 1. Ensure script is run with sudo or by root. Check if id of user running script is not equal to 0. If so, this indicates the script was not run with sudo or by the root user, so we return an error message and exit the script.
 
@@ -78,8 +78,16 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 
 
 ![](./Assets/main4.png)
-4. If links variable has been set to true we run the create-links script. If this command fials we return an error message asking user to ensure the required script exists in the necessary directory and then exits the script.
+4. If links variable has been set to true we run the create-links script. If this command fails we return an error message asking user to ensure the required script exists in the necessary directory and then exits the script.
 
+
+## File: Packages
+
+![](./Assets/packages.png)
+17. We add one package per line for packages we wish to install on the system.
+
+
+# Coding Breakdown - Project 2
 
 ## Script: create-user
 
@@ -101,7 +109,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 5. we iterate over the existing users to check if the desired username has already been taken. If it has, we return an error and exit the script. If the username is available, we continue.
 
 ![](./Assets/user-5.png)
-6. We assign the last user id and group id on the system to variables.
+6. We assign the last user id and group id on the system to variables. (using tail to get the last line and then cutting segment with id)
 7. We check to see if each are greater than or equal to 1000, if they are then we can simply increment by 1 to set a new user id and group id that have not yet been used. If they are not greater than or equal to 1000, we can set this user to user id 1000 and group id 1000.
 
 ![](./Assets/user-6.png)
@@ -124,7 +132,3 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 16. We use chown to give ownership of the user's home directory to the user we created. If the command fials we return an error message.
 
 
-## File: Packages
-
-![](./Assets/packages.png)
-17. We add one package per line for packages we wish to install on the system.
