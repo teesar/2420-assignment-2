@@ -20,10 +20,11 @@
 1. $SUDO_USER is a variable set by sudo containing the user that used the sudo command. We can match this user in /etc/passwd with getent and then cut the user's home directory to set it to a variable.
 
 ![](./Assets/links-2.png)
-2. If the sudo user variable is empty we can assume the script was run as root, and so we clone the git repository and create symbolic links using ~/ to match the home directory (could also just write /root).
-3. If the sudo user variable is NOT empty, we know the script was run with sudo and we clone the git repository and create symbolic links using the home directory variable we created in step one ($YOUR_HOME).
-* If the git clone command fails we give the user an error message referring to what may have caused the error, and exit the script.
-* We use the -f flag on symbolic link creation to force overwrites if those files already exist.
+2. If the sudo user variable is empty we can assume the script was run as root and we configure directories appropriately using ~/ (could also use /root)
+3. If the sudo user variable is NOT empty we can assume the script was run with sudo and we configure directories appropriately using the variable we created in step 1.
+4. We force delete any existing .dotfiles directory and any files/folders within it so that our clone can procede.
+5. We clone the git repository into desired location, if the command fails we give the user an error message asking them to check specific git issues.
+6. We force create the desired symbolic links, overwriting any current files of the same name. 
 
 # create-main
 ![](./Assets/main-1.png)
