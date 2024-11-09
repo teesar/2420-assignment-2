@@ -75,6 +75,12 @@ if [ -n $USER_GROUPS ]; then
   done
 fi
 
+# Copy contents of /etc/skel/. to user's home directory.
+cp -R /etc/skel/. /home/$USER_NAME || echo "Error copying /etc/skel contents to home folder. Please check file permissions."
+
+
+
+
 
 
 
