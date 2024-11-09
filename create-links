@@ -14,6 +14,7 @@ YOUR_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
 # Clone git repository and create symbolic links (ssh options commented out)
 if [ -z "$YOUR_HOME" ]; then
   #git clone git@gitlab.com:cit2420/2420-as2-starting-files.git ~/.dotfiles || { echo "Error cloning git. Ensure ssh keys are properly configured. Refer to ssh-add and ssh-agent commands.";exit 1; }
+  rm -rf ~/.dotfiles
   git clone https://gitlab.com/cit2420/2420-as2-starting-files.git ~/.dotfiles || { echo "Error cloning git. Ensure url is correct and repository is accessible.";exit 1; }
   ln -sf ~/.dotfiles/bin ~/bin
   ln -sf ~/.dotfiles/config ~/.config
@@ -21,6 +22,7 @@ if [ -z "$YOUR_HOME" ]; then
 else
  # ssh-add $YOUR_HOME/.ssh/gitlab
   #git clone git@gitlab.com:cit2420/2420-as2-starting-files.git $YOUR_HOME/.dotfilestt || { echo "Error cloning git. Ensure ssh keys are properly configured. Refer to ssh-add and ssh-agent commands.";exit 1; }
+  rm -rf $YOUR_HOME/.dotfiles
   git clone https://gitlab.com/cit2420/2420-as2-starting-files.git $YOUR_HOME/.dotfiles || { echo "Error cloning git. Ensure url is correct and repository is accessible.";exit 1; }
   ln -sf $YOUR_HOME/.dotfiles/bin $YOUR_HOME/bin
   ln -sf $YOUR_HOME/.dotfiles/config $YOUR_HOME/.config
