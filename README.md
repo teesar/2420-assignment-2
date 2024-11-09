@@ -1,6 +1,21 @@
 # 2420-assignment-2
 
-# Creating New User
+# Project 1: Configuration Scripts
+## Installing Packages | Cloning Git & Creating Links 
+
+The create-main script is used to activate two additional scripts. The first clones a git repository onto your system and create symbolic links. The second installs a list of packages. **This file must be run with sudo or as root.** 
+
+There are several flags you may use to customize the process. No arguments are necessary.
+#### Command Flags
+    -a          *Initiates package installation
+    -b          *Initiates git clone and symbolic link creation
+
+**Example:** To initiate git clone/link creation and package installation, you may use both flags at the same time.
+```
+sudo ./create-main -ab
+```
+# Project 2: New User Script
+## Creating New User
 
 The create-user script is used to create a new user. **This file must be run with sudo or as root.** 
 There are several flags you may use to customize the process. Each expects an argument if used.
@@ -14,20 +29,6 @@ There are several flags you may use to customize the process. Each expects an ar
 
 ```
 sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgroup2
-```
-
-# Installing Packages | Cloning Git & Creating Links 
-
-The create-main script is used to activate two additional scripts. The first clones a git repository onto your system and create symbolic links. The second installs a list of packages. **This file must be run with sudo or as root.** 
-
-There are several flags you may use to customize the process. No arguments are necessary.
-#### Command Flags
-    -a          *Initiates package installation
-    -b          *Initiates git clone and symbolic link creation
-
-**Example:** To initiate git clone/link creation and package installation, you may use both flags at the same time.
-```
-sudo ./create-main -ab
 ```
 
 
@@ -118,3 +119,7 @@ sudo ./create-main -ab
 
 ![](./Assets/user-10.png)
 16. We use chown to give ownership of the user's home directory to the user we created. If the command fials we return an error message.
+
+## Packages File
+![](./Assets/packages.png)
+17. We add one package per line for packages we wish to install on the system.
