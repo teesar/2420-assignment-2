@@ -32,5 +32,18 @@ whlie getopts ${OPTSTRING} opt; do
   esac
 done
 
+# Assign all current usernames to variable.
+USER_LIST=$(cut -d: -f1 /etc/passwd)
+
+# Check to see if user provided username already exists.
+for NAME in $USER_LIST; do
+if [ $NAME == $USER_NAME ]; then
+  echo "The username you've specified already exists, please select a different name."
+  exit 1
+fi
+done
+
+
+
 
 
