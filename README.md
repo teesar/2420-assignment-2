@@ -44,11 +44,28 @@
 4. If links variable has been set to true we run create-links script. If this command fials we return an error message asking user to ensure the required script exists in the necessary directory and then exits the script.
 
 # create-user
+![](./Assets/install-1.png)
+1. Ensure script is run with sudo or by root. Check if id of user running script is not equal to 0. If so, this indicates the script was not run with sudo or by the root user, so we return an error message and exit the script.
+
 ![](./Assets/user-1.png)
+2. We use getopts to allow the person running the script to specify the username (-a flag), password (-b flag), custom shell (-c flag), and groups (-d flag) for the new user. 
+* Each flag requires an argument and the script will return an error and exit the script if an argument is missing. 
+* If any incorrect flags are used the script will return an error message and exit the script.  
+
 ![](./Assets/user-2.png)
+3. If the username has not been set the script will return an error informing the user that it's required and exit the script.
+
 ![](./Assets/user-3.png)
+4. Assigning all existing users to a variable by cutting the correct segment of /etc/passwd file.
+
 ![](./Assets/user-4.png)
+5. we iterate over the existing users to check if the desired username has already been taken. If it has, we return an error and exit the script. If the username is available, we continue.
+
+
+
 ![](./Assets/user-5.png)
+6. We assign the last user id and group id on the system to variables.
+7. We check to see if each are greater than or equal to 1000, if they are then we can simply increment by 1 to set a new user id and group id that have not yet been used. If they are not greater than or equal to 1000, we can set this user to user id 1000 and group id 1000.
 ![](./Assets/user-6.png)
 ![](./Assets/user-7.png)
 ![](./Assets/user-8.png)
