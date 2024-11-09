@@ -48,6 +48,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 ![](./Assets/install-3.png)
 4. Iterate through packages file and install each package name listed. Using --needed so that it only installs if it isn't already installed. No user confirmation required.
 
+
 ## Script: create-links
 
 ![](./Assets/install-1.png)
@@ -63,6 +64,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 6. We clone the git repository into desired location, if the command fails we give the user an error message asking them to check specific git issues.
 7. We force create the desired symbolic links, overwriting any current files of the same name. 
 
+
 ## Script: create-main
 
 ![](./Assets/main-1.png)
@@ -77,6 +79,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 
 ![](./Assets/main4.png)
 4. If links variable has been set to true we run create-links script. If this command fials we return an error message asking user to ensure the required script exists in the necessary directory and then exits the script.
+
 
 ## Script: create-user
 
@@ -120,6 +123,8 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 ![](./Assets/user-10.png)
 16. We use chown to give ownership of the user's home directory to the user we created. If the command fials we return an error message.
 
-## Packages File
+
+## File: Packages
+
 ![](./Assets/packages.png)
 17. We add one package per line for packages we wish to install on the system.
