@@ -17,10 +17,11 @@ while getopts ${OPTSTRING} opt; do
       USER_PASSWORD=${OPTARG}
       ;;
     c)
-      USER_SHELL=${OPTARG:-/bin/bash}
+      USER_SHELL=${OPTARG}
       ;;
     d)
       USER_GROUPS="$OPTARG"
+      ;;
     :)
       echo "You're missing an argument after the flag. Please try again."
       exit 1
@@ -63,7 +64,7 @@ fi
 echo "$USER_NAME:x:$NEW_GID:$USER_NAME" >> /etc/group || echo "Error adding user's primary group to /etc/group. Please check file permissions."
 
 # Add new user to /etc/passwd.
-echo "$USER_NAME:x:$NEW_UID:$NEW_GID::/home/$USER_NAME:$USER_SHELL" >> /etc/passwd || echo "Error adding new user to /etc/passwd. Please check file permissions."
+echo "$USER_NAME:x:$NEW_UID:$NEW_GID::/home/$USER_NAME:${USER_SHELL:-/bin/bash}" >> /etc/passwd || echo "Error adding new user to /etc/passwd. Please check file permissions."
 
 # Add user to groups specified through getopts.
 if [ -n $USER_GROUPS ]; then
