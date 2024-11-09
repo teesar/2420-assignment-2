@@ -1,0 +1,36 @@
+$!/bin/bash
+
+# Ensure script is run with sudo or as root.
+if [ $(id -u) -ne 0 ]; then
+  echo "This script must be run with sudo or as root."
+  exit 1
+fi
+
+# Getopts to set username, password, shell, group variable for user creation.
+OPTSTRING=":a:b:c:d:"
+whlie getopts ${OPTSTRING} opt; do
+  case ${opt} in
+    a)
+      USER_NAME=${OPTARG}
+      ;;
+    b)
+      USER_PASSWORD=${OPTARG}
+      ;;
+    c)
+      USER_SHELL=${OPTARG:-/bin/bash}
+      ;;
+    d)
+      USER_GROUPS="$OPTARG"
+    :)
+      echo "You're missing an argument after the flag. Please try again."
+      exit 1
+      ;;
+    ?)
+      echo "You've used an invalid flag. Reference: -a username -b password -c /custom/shell -d group2,group3,group4"
+      exit 1
+      ;;
+  esac
+done
+
+
+
