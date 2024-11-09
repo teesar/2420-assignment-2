@@ -74,11 +74,11 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 2. We use getopts to allow the person runing the script to specify whether they want to run the installation script, the clone and link creation script, or both. The -a flag sets INSTALL variable to true, -b flag sets LINKS variable to true, any other flag returns an error message to the user and exits the script.
 
 ![](./Assets/main3.png)
-3. If installation variable has been set to true we run create-install script. If this command fails we return an error message asking user to ensure the required script exists in the necessary directory and then exits the script.
+3. If installation variable has been set to true we run the create-install script. If this command fails we return an error message asking user to ensure the required script exists in the necessary directory and then exits the script.
 
 
 ![](./Assets/main4.png)
-4. If links variable has been set to true we run create-links script. If this command fials we return an error message asking user to ensure the required script exists in the necessary directory and then exits the script.
+4. If links variable has been set to true we run the create-links script. If this command fials we return an error message asking user to ensure the required script exists in the necessary directory and then exits the script.
 
 
 ## Script: create-user
