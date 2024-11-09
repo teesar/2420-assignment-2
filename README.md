@@ -74,6 +74,12 @@
 ![](./Assets/user-8.png)
 10. We check to see if the script has been given an argument for groups to add the user to. (-n flag specifies the variable is not empty)
 11. If so, we create a variable holding all existing group names. We pipe this forward and use tr to replace commas with new lines, separating the list of groups into individual groups. We pipe this to the while read loop which can iterate over each line (each group) and assign to variable GROUPY.
-12. We check the group list with grep for exact matches (-q flag to suppress output). If we find a match we use sed to add a comma (-i flag to edit in place)
+12. We check the group list with grep for exact matches (-q flag to suppress output). 
+13. For the group we've matched we find the users after the colon at the end of the line and assign them to a variable.
+14. If we found any current users in the group we add a comma before adding the name of the new user, otherwise we just add the name of the user directly. For these operations we use sed (-i flag to edit in place) to perform substitution and add the user to end of the line.
+
 ![](./Assets/user-9.png)
+15. We copy the /etc/skel/. contents (-R flag to move all contents recursively) to the home directory of the new user. If the command fails we return an error message.
+
 ![](./Assets/user-10.png)
+16. We use chown to give ownership of the user's home directory to the user we created. If the command fials we return an error message.
