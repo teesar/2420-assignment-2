@@ -70,7 +70,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 
 ![](./Assets/links-2.png)
 
-3. If the sudo user variable is empty we can assume the script was run as root and we configure directories appropriately using ~/ (could also use /root)
+3. If the sudo user variable is empty we can assume the script was run as root and we configure directories appropriately using ~/ (could also use /root).
 4. If the sudo user variable is NOT empty we can assume the script was run with sudo and we configure directories appropriately using the variable we created in step 1.
 5. We force delete any existing .dotfiles directory and any files/folders within it so that our clone can procede.
 6. We clone the git repository into desired location, if the command fails we give the user an error message asking them to check specific git issues.
@@ -139,7 +139,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 
 ![](./Assets/user-5.png)
 
-6. We assign the last user id and group id on the system to variables. (using tail to get the last line and then cutting segment with id)
+6. We assign the last user id and group id on the system to variables. (using tail to get the last line and then cutting segment with id).
 7. We check to see if each are greater than or equal to 1000, if they are then we can simply increment by 1 to set a new user id and group id that have not yet been used. If they are not greater than or equal to 1000, we can set this user to user id 1000 and group id 1000.
 
 
@@ -155,7 +155,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 
 ![](./Assets/user-8.png)
 
-10. We check to see if the script has been given an argument for groups to add the user to. (-n flag specifies the variable is not empty)
+10. We check to see if the script has been given an argument for groups to add the user to. (-n flag specifies the variable is not empty).
 11. If so, we create a variable holding all existing group names. We pipe this forward and use tr to replace commas with new lines, separating the list of groups into individual groups. We pipe this to the while read loop which can iterate over each line (each group) and assign to variable GROUPY.
 12. We check the group list with grep for exact matches (-q flag to suppress output). 
 13. For the group we've matched we find the users after the colon at the end of the line and assign them to a variable.
