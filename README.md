@@ -169,6 +169,6 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 
 ![](./Assets/user-10.png)
 
-16. We use chown to give ownership of the user's home directory to the user we created. If the command fials we return an error message.
+16. We use chown to give ownership of the user's home directory to the user we created. If the command fails we return an error message.
 
 
