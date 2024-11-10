@@ -134,7 +134,7 @@ sudo ./create-user -a testuser -b testpassword -c /bin/zsh -d testgroup1,testgro
 
 ![](./Assets/user-4.png)
 
-5. we iterate over the existing users to check if the desired username has already been taken. If it has, we return an error and exit the script. If the username is available, we continue.
+5. We iterate over the existing users to check if the desired username has already been taken. If it has, we return an error and exit the script. If the username is available, we continue.
 
 
 ![](./Assets/user-5.png)
