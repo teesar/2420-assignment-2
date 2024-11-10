@@ -3,7 +3,7 @@
 # Project 1: Configuration Scripts
 ## Installing Packages | Cloning Git & Creating Links 
 
-The create-main script is used to activate two additional scripts (create-install and create-links). The first clones a git repository onto your system and create symbolic links. The second installs a list of packages. **This file must be run with sudo or as root.** 
+The create-main script is used to activate two additional scripts (create-links and create-install). The first clones a git repository onto your system and create symbolic links. The second installs a list of packages. **This file must be run with sudo or as root.** 
 
 There are several flags you may use to customize the process. No arguments are necessary.
 #### Command Flags
